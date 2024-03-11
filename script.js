@@ -1,12 +1,15 @@
 const grid = document.querySelector("#grid");
 const resetButton = document.querySelector("#reset-button");
-const blackButton = document.querySelector("#color-black");
-const redButton = document.querySelector("#color-red");
-const blueButton = document.querySelector("#color-blue");
-const rainbowButton = document.querySelector("#color-rainbow");
+const blackButton = document.querySelector(".color-black");
+const redButton = document.querySelector(".color-red");
+const blueButton = document.querySelector(".color-blue");
+const rainbowButton = document.querySelector(".color-rainbow");
 
 let gridSize = 16;
 createGrid();
+chooseColor("black");
+
+
 
 function createGrid() {
     for (let i = 0; i < gridSize; i++) {
@@ -37,19 +40,26 @@ function resetGrid() {
 
 
 function chooseColor(color) {
-    cellColor = color;
+    if (color) {
+        cellColor = color;
+    } else {
+        cellColor = 'RGB';
+    }
 }
 
 function draw(event) {
-
-    // cellColor = 'RGB(' + Math.floor(Math.random() * 255 + 1) + ',' + Math.floor(Math.random() * 255 + 1) + ',' + Math.floor(Math.random() * 255 + 1) + ')';
-    chooseColor("black");
-    event.target.style.backgroundColor = cellColor;
-
+    if (cellColor !== 'RGB') {
+        event.target.style.backgroundColor = cellColor;
+    } else {
+        event.target.style.backgroundColor = 'RGB(' + Math.floor(Math.random() * 255 + 1) + ',' + Math.floor(Math.random() * 255 + 1) + ',' + Math.floor(Math.random() * 255 + 1) + ')';
+    }
 }
 
 
+blackButton.addEventListener('click', () => { chooseColor("black") });
+redButton.addEventListener('click', () => { chooseColor("red") });
+blueButton.addEventListener('click', () => { chooseColor("blue") });
+rainbowButton.addEventListener('click', () => { chooseColor() });
 
-// blackButton.addEventListener('click', () => { chooseColor("black") });
 grid.addEventListener('mouseover', draw);
 resetButton.addEventListener('click', resetGrid);
