@@ -40,11 +40,7 @@ function resetGrid() {
 
 
 function chooseColor(color) {
-    if (color) {
-        cellColor = color;
-    } else {
-        cellColor = 'RGB';
-    }
+    cellColor = color;
 }
 
 function draw(event) {
@@ -59,7 +55,25 @@ function draw(event) {
 blackButton.addEventListener('click', () => { chooseColor("black") });
 redButton.addEventListener('click', () => { chooseColor("red") });
 blueButton.addEventListener('click', () => { chooseColor("blue") });
-rainbowButton.addEventListener('click', () => { chooseColor() });
+rainbowButton.addEventListener('click', () => { cellColor = 'RGB' });
 
-grid.addEventListener('mouseover', draw);
+
+let isDrawing = false;
+
+grid.addEventListener('mousedown', (event) => {
+    isDrawing = true;
+    event.preventDefault(); // Prevent text selection
+});
+
+document.addEventListener('mousemove', (event) => {
+    if (isDrawing) {
+        draw(event);
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    isDrawing = false;
+});
+
+// grid.addEventListener('mouseover', draw);
 resetButton.addEventListener('click', resetGrid);
