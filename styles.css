@@ -8,8 +8,8 @@ h1 {
     font-size: 26px;
     text-align: center;
     font-family: sans-serif;
-    margin-top: 15px;
-    margin-bottom: 60px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 body {
@@ -19,19 +19,34 @@ body {
 }
 
 #grid {
-    outline: 1px solid red;
+    outline: 5px solid black;
     width: 80vh;
     height: 80vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 .cell {
-    background-color: green;
-    outline: black solid 1px;
-    min-width: 10px;
-    min-height: 20px;
-    display: inline-block;
+    background-color: white;
+    outline: lightgray solid 1px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    /* flex-basis: 6.25%; */
+}
+
+#reset-button {
+    width: 100px;
+    height: 25px;
+    margin-bottom: 20px;
+    background-color: orange;
+    border: none;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+}
+
+#reset-button:hover {
+    background-color: rgb(255, 217, 0);
+    width: 105px;
+    cursor: pointer;
 }

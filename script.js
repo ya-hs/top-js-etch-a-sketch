@@ -1,10 +1,41 @@
 const grid = document.querySelector("#grid");
-// grid.style.backgroundColor = "red";
+const resetButton = document.querySelector("#reset-button");
+let gridSize = 16;
+createGrid();
 
-for (let i = 0; i < 16; i++) {
-    for (let j = 0; j < 16; j++) {
-        const cell = document.createElement("div");
-        cell.classList.add("cell");
-        grid.appendChild(cell);
+function createGrid() {
+    for (let i = 0; i < gridSize; i++) {
+        for (let j = 0; j < gridSize; j++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.style.flexBasis = (100 / gridSize + "%");
+            grid.appendChild(cell);
+        }
     }
 }
+
+function removeGrid() {
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
+    }
+}
+
+function resetGrid() {
+    const cells = document.querySelectorAll(".cell");
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].style.backgroundColor = "white";
+    }
+    gridSize = Number(prompt("how many?"));
+    removeGrid();
+    createGrid();
+}
+
+function draw(event) {
+    cellColor = 'RGB(' + Math.floor(Math.random() * 255 + 1) + ',' + Math.floor(Math.random() * 255 + 1) + ',' + Math.floor(Math.random() * 255 + 1) + ')';
+
+    event.target.style.backgroundColor = cellColor;
+
+}
+
+grid.addEventListener('mouseover', draw);
+resetButton.addEventListener('click', resetGrid);
