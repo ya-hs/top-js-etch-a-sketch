@@ -9,8 +9,6 @@ let gridSize = 16;
 createGrid();
 chooseColor("black");
 
-
-
 function createGrid() {
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
@@ -51,12 +49,12 @@ function draw(event) {
     }
 }
 
-
 blackButton.addEventListener('click', () => { chooseColor("black") });
 redButton.addEventListener('click', () => { chooseColor("red") });
 blueButton.addEventListener('click', () => { chooseColor("blue") });
 rainbowButton.addEventListener('click', () => { cellColor = 'RGB' });
 
+// Event listeners for click-and-drag
 
 let isDrawing = false;
 
@@ -75,5 +73,4 @@ document.addEventListener('mouseup', () => {
     isDrawing = false;
 });
 
-// grid.addEventListener('mouseover', draw);
 resetButton.addEventListener('click', resetGrid);
