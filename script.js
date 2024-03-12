@@ -31,7 +31,7 @@ function resetGrid() {
     for (let i = 0; i < cells.length; i++) {
         cells[i].style.backgroundColor = "white";
     }
-    gridSize = Number(prompt("how many?"));
+    gridSize = Number(prompt("how large should the grid be? (Number 1-100)"));
     removeGrid();
     createGrid();
 }
